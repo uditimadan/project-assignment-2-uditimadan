@@ -22,7 +22,8 @@ private List<Queue<Passenger>> floorQueues; //List of queues, where each queue c
 
 The Elevator.properties file is read through the file input method in the main method in ElevationSimulation.java class. My properties file was a little different from the default values as I wanted to try out different probability of the passengers with 2 elevators and 30 floors.
 
-![Screen Shot 2023-11-26 at 7.04.31 PM.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/309cbb70-9ad3-430e-86b6-f67e680f9027/aaf37b99-e80b-483c-b21b-6c42250cf12e/Screen_Shot_2023-11-26_at_7.04.31_PM.png)
+<img width="520" alt="properties" src="https://github.com/uditimadan/project-assignment-2-uditimadan/assets/123421939/49f96218-d8f4-4891-8a3f-f528edacdee7">
+
 
 **Requirement 2 : Running the Simulation**
 
@@ -41,4 +42,16 @@ Initially this method retrieves the list of elevators from the floor. It iterate
 3. **New passengers:** The basic logic for handling new passengers in the `handleNewPassengers` method is based on a probability check which utilizes the `Math.random()` method, and returns a random double value between 0.0 (inclusive) and 1.0 (exclusive). The method checks if this random value is less than the specified passenger probability. If true, it generates a random passenger using the `generateRandomPassenger` method and adds them to the floor by calling `floor.handleArrival(passenger)`. The `generateRandomPassenger` method, in turn, generates a passenger with random attributes. It uses the `Random` class to determine the start floor, destination floor, and arrival time of the passenger. The destination floor is ensured to be different from the start floor, then generated passenger is returned.
 
 **Requirement 3 : Reporting the Results**
+The `reportResults` method is responsible for presenting the results of the elevator simulation. It calculates and prints the average time between passenger arrival and conveyance, the longest time, and the shortest time. 
+
+1. **`calculateAverageTime`:** This method calculates the average time between passenger arrival and conveyance. It checks if the `conveyanceTimes` list is empty to handle the case when no passengers were conveyed during the simulation. If the list is not empty, it uses a loop to sum up all the conveyance times and then divides the sum by the number of conveyance times to get the average.
+
+2. **`calculateLongestTime`:** This method calculates the longest time between passenger arrival and conveyance. It uses the  Stream method to find the maximum value in the `conveyanceTimes` list. The `stream().max(Double::compare)` operation compares the elements and returns the maximum value. If the list is empty, it defaults to 0.0.
    
+3. **`calculateShortestTime`:**This method calculates the shortest time between passenger arrival and conveyance. Similar to `calculateLongestTime`, it uses the Stream method to find the minimum value in the `conveyanceTimes` list. The `stream().min(Double::compare)` operation compares the elements and returns the minimum value. If the list is empty, it defaults to 0.0.
+
+Some sample outputs:
+
+<img width="720" alt="Screen Shot 2023-11-26 at 3 31 17 PM" src="https://github.com/uditimadan/project-assignment-2-uditimadan/assets/123421939/74fcc19d-fd15-4642-b1e9-0e33b642981c">
+
+
